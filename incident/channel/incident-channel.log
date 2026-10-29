@@ -1,0 +1,27 @@
+# #inc-2026-10-20-review-queue (chat export, times UTC). alerts is the CloudWatch bot.
+# People: dana (on-call, backend engineer), marcus (product), rafael (engineering manager),
+# lena and tomas (engineers, in and out).
+
+14:27  dana     release 2026-10-20 is out, run 7781201 green. payer queue now refreshes itself.
+15:02  alerts   ALARM skeleton-prod-api-memory-high: MemoryUtilization (Maximum) > 90 for 1 of 1 datapoints
+15:04  dana     api memory alarm. gunicorn logs "Worker (pid:7) was sent SIGKILL! Perhaps out of memory?" on two tasks. it boots a new worker straight away. no errors so far.
+15:05  alerts   OK skeleton-prod-api-memory-high
+15:06  lena     the cache keeps one entry per path for five seconds. it should be tiny. checking.
+15:13  alerts   ALARM skeleton-prod-api-memory-high
+15:15  dana     another one. memory graph is a sawtooth, every task climbs to the limit and drops when a worker is killed.
+15:22  lena     can't see it locally, memory stays flat when I hit the list with curl in a loop.
+15:34  alerts   ALARM skeleton-prod-api-5xx: HTTPCode_Target_5XX_Count >= 50 for 3 of 3 datapoints
+15:37  dana     now we have 500s. about 15 percent of api requests.
+15:40  marcus   Bluecrest says the queue shows "The API answered 500" every few refreshes. Harborview too.
+15:44  dana     filtered the api log to restarts and 5xx. after a worker is killed, its task throws 500s for a while. the crashes are breaking requests.
+15:46  tomas    autoscaler is doing its job, traffic is way up from this morning because of the refresh. that part is expected.
+15:48  rafael   can we turn the cache off?
+15:52  dana     opened PR 1093 reverting the cache commit. CI running.
+15:59  lena     reproduced nothing so far. maybe it only leaks under real traffic.
+16:03  dana     CI green on 1093. needs one approval, then deploy, ~40 min.
+16:18  alerts   (no change) skeleton-prod-api-5xx still ALARM
+16:21  marcus   Harborview: "about one refresh in three fails now".
+16:22  dana     500 rate jumped to ~30 percent at 16:19. more crashes, more 500s.
+16:24  tomas    should we double api task memory meanwhile? workers would die half as often.
+16:26  rafael   bringing in the new infra lead at 16:30. dana, write up a handover.
+16:28  dana     handover is in the incident doc.

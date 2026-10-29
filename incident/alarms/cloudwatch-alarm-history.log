@@ -1,0 +1,24 @@
+# CloudWatch alarm history, 2026-10-20 (UTC). Alarms post to the #platform-alerts channel; there is no paging rotation.
+# timestamp  alarm  transition  reason
+
+2026-10-20T15:02:30.000Z  skeleton-prod-api-memory-high  OK -> ALARM  MemoryUtilization (Maximum) > 90 for 1 of 1 datapoints (skeleton-prod-api)
+2026-10-20T15:04:30.000Z  skeleton-prod-api-memory-high  ALARM -> OK
+2026-10-20T15:13:30.000Z  skeleton-prod-api-memory-high  OK -> ALARM  MemoryUtilization (Maximum) > 90 for 1 of 1 datapoints (skeleton-prod-api)
+2026-10-20T15:15:30.000Z  skeleton-prod-api-memory-high  ALARM -> OK
+2026-10-20T15:27:30.000Z  skeleton-prod-api-memory-high  OK -> ALARM  MemoryUtilization (Maximum) > 90 for 1 of 1 datapoints (skeleton-prod-api)
+2026-10-20T15:29:30.000Z  skeleton-prod-api-memory-high  ALARM -> OK
+2026-10-20T15:34:00.000Z  skeleton-prod-api-5xx  OK -> ALARM  HTTPCode_Target_5XX_Count >= 50 for 3 of 3 datapoints (skeleton-prod-api)
+2026-10-20T15:39:30.000Z  skeleton-prod-api-memory-high  OK -> ALARM  MemoryUtilization (Maximum) > 90 for 1 of 1 datapoints (skeleton-prod-api)
+2026-10-20T15:41:30.000Z  skeleton-prod-api-memory-high  ALARM -> OK
+2026-10-20T15:47:30.000Z  skeleton-prod-api-memory-high  OK -> ALARM  MemoryUtilization (Maximum) > 90 for 1 of 1 datapoints (skeleton-prod-api)
+2026-10-20T15:49:30.000Z  skeleton-prod-api-memory-high  ALARM -> OK
+2026-10-20T15:58:30.000Z  skeleton-prod-api-memory-high  OK -> ALARM  MemoryUtilization (Maximum) > 90 for 1 of 1 datapoints (skeleton-prod-api)
+2026-10-20T16:00:30.000Z  skeleton-prod-api-memory-high  ALARM -> OK
+2026-10-20T16:08:30.000Z  skeleton-prod-api-memory-high  OK -> ALARM  MemoryUtilization (Maximum) > 90 for 1 of 1 datapoints (skeleton-prod-api)
+2026-10-20T16:10:30.000Z  skeleton-prod-api-memory-high  ALARM -> OK
+2026-10-20T16:17:30.000Z  skeleton-prod-api-memory-high  OK -> ALARM  MemoryUtilization (Maximum) > 90 for 1 of 1 datapoints (skeleton-prod-api)
+2026-10-20T16:19:30.000Z  skeleton-prod-api-memory-high  ALARM -> OK
+2026-10-20T16:26:30.000Z  skeleton-prod-api-memory-high  OK -> ALARM  MemoryUtilization (Maximum) > 90 for 1 of 1 datapoints (skeleton-prod-api)
+2026-10-20T16:28:30.000Z  skeleton-prod-api-memory-high  ALARM -> OK
+
+# Still in ALARM at 16:30: api-5xx. api-memory-high keeps flapping.
